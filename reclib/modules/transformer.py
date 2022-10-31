@@ -65,7 +65,6 @@ class MultiHeadAttention(nn.Module):
     self.W_k = nn.Linear(d_model, d_model, bias=False)
     self.W_v = nn.Linear(d_model, d_model, bias=False)
     self.W_o = nn.Linear(d_model, d_model, bias=False)
-    self.attn_weights = None
 
   def split_heads(self, x):
     B, N, d_model = x.size()
@@ -83,8 +82,7 @@ class MultiHeadAttention(nn.Module):
     v = self.split_heads(self.W_v(v))
     if mask is not None:
       mask = mask.unsqueeze(1)
-    # mh_attn, _ = attention(q, k, v, mask)
-    mh_attn, self.attn_weights = attention(q, k, v, mask)
+    mh_attn, _ = attention(q, k, v, mask)
     attn = self.W_o(self.concat_heads(mh_attn))
     return attn
 
