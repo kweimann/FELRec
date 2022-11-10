@@ -1,6 +1,6 @@
 # FELRec
 
-PyTorch implementation of the FELRec paper.
+PyTorch implementation of the [FELRec paper](https://arxiv.org/abs/2210.16928).
 
 ### ABSTRACT
 
